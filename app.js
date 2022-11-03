@@ -37,6 +37,12 @@ app.use((req, res, next) => {
   res.header('Allow', 'GET, PUT, POST, DELETE, OPTIONS');
   next();
 });
+
+app.post('/api/receive_sandbox', async function (req, res) {
+  console.log(req.body);
+
+})
+
 app.use('/', express.static('client', { redirect: false }));
 app.use('/api', wtpp_router);
 app.get('*', function (req, res, next) {

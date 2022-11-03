@@ -50,7 +50,7 @@ const send_message = async function (req, res) {
 
 const upload_file = async function (req, res) {
 
-  var img_path = (req.files.file.path).split('\\')[1];
+  var img_path = (req.files.file.path).split('/')[1];
 
   var url = 'http://127.0.0.1:4201/api/get_resources/' + img_path;
 
