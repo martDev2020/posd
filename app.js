@@ -6,7 +6,15 @@ const path = require('path');
 const port = process.env.PORT || 4201;
 /**Se instancia para usar el framework express. */
 const app = express();
+var server = require('http').createServer(app);
+var io = require('socket.io')(server);
 
+io.on('connection', (socket) => {
+    console.log('socket connected');
+    socket.on('disconnect', () => {
+        console.log('socket disconnected');
+    });
+});
 /**Lallamado */
 const wtpp_router = require('./routers/wttp');
 
@@ -14,7 +22,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/wtapp', (err, res) => {
     if (err) {
         throw err;
     } else {
-        app.listen(port, function () {
+        server.listen(port, function () {
             console.log('Servidor corriendo en ' + port);
         });
     }
@@ -38,16 +46,20 @@ app.use((req, res, next) => {
     next();
 });
 
+app.post('api/receive_sandbox', async function (req, res) {
+    // console.log(req.body);
+    io.on('connection', function (socket) {
+        io.emit('receiving_message', req.body);
+    })
+
+})
+
 app.use('/', express.static('client', { redirect: false }));
 app.use('/api', wtpp_router);
 app.get('*', function (req, res, next) {
     res.sendFile(path.resolve('client/index.html'));
 })
 
-app.post('api/receive_sandbox', async function (req, res) {
-    console.log(req.body);
-
-})
 /**=================================================================
  * SE EXPOrTA LA INSTANCIA APP
  ===================================================================*/
