@@ -48,9 +48,9 @@ app.use((req, res, next) => {
 
 app.post('api/receive_sandbox', async function (req, res) {
     // console.log(req.body);
-    io.on('connection', function (socket) {
-        io.emit('receiving_message', req.body);
-    })
+
+    io.emit('receiving_message', req.body);
+
 
 })
 
