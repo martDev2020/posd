@@ -46,7 +46,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.post('api/receive_sandbox', async function (req, res) {
+app.post('/api/receiving_message_sandbox', async function (req, res) {
     // console.log(req.body);
 
     io.emit('receiving_message', req.body);
