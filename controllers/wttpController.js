@@ -1,7 +1,7 @@
 /**Línea extraído de la documentación,
  * https://github.com/messagebird/messagebird-nodejs
  */
-const messagebird = require('messagebird')('wRfBUddmbES5BF9jK9IbBCVwb');
+const messagebird = require('messagebird')('etSo2tsEloCodZf9lmD9b7FHs');
 var fetch = require('node-fetch');
 var fs = require('fs');
 var path = require('path');
@@ -11,7 +11,7 @@ const get_conversation = async function (req, res) {
     method: 'get',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'AccessKey wRfBUddmbES5BF9jK9IbBCVwb',
+      'Authorization': 'AccessKey etSo2tsEloCodZf9lmD9b7FHs',
     }
   });
 
@@ -25,7 +25,7 @@ const get_messages = async function (req, res) {
     method: 'get',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'AccessKey wRfBUddmbES5BF9jK9IbBCVwb',
+      'Authorization': 'AccessKey etSo2tsEloCodZf9lmD9b7FHs',
     }
   });
 
@@ -40,7 +40,7 @@ const send_message = async function (req, res) {
     body: JSON.stringify(body),
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'AccessKey wRfBUddmbES5BF9jK9IbBCVwb',
+      'Authorization': 'AccessKey etSo2tsEloCodZf9lmD9b7FHs',
     }
   });
 
